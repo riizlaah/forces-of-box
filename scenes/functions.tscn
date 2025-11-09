@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b63ghwich3wj"]
+
+[ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="1_ko02k"]
+[ext_resource type="PackedScene" uid="uid://28t7kcmiqbt4" path="res://scenes/function_editor.tscn" id="2_prlwn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ko02k")
+current_tab = 0
+
+[node name="Skill 1" parent="TabContainer" instance=ExtResource("2_prlwn")]
+layout_mode = 2

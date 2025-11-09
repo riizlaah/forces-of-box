@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://28t7kcmiqbt4"]
+
+[ext_resource type="Texture2D" uid="uid://d00wdfqisfitt" path="res://assets/black-grid.jpg" id="1_2yhh1"]
+[ext_resource type="Texture2D" uid="uid://cmkrolah68oud" path="res://assets/icons-default.png" id="1_hla8g"]
+[ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="2_6wip8"]
+[ext_resource type="PackedScene" uid="uid://ckxvog3ity17k" path="res://scenes/math_components/add.tscn" id="3_6wip8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hla8g"]
+atlas = ExtResource("1_hla8g")
+region = Rect2(50, 250, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wip8"]
+atlas = ExtResource("1_hla8g")
+region = Rect2(100, 300, 48, 48)
+
+[node name="FunctionEditor" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_tab_index = 0
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Hbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Control2" type="Control" parent="Hbox"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Hbox"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_6wip8")
+placeholder_text = "Search..."
+
+[node name="TextureButton" type="TextureButton" parent="Hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_6wip8")
+texture_normal = SubResource("AtlasTexture_hla8g")
+
+[node name="VSeparator" type="VSeparator" parent="Hbox"]
+layout_mode = 2
+theme = ExtResource("2_6wip8")
+
+[node name="TextureButton2" type="TextureButton" parent="Hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_6wip8")
+texture_normal = SubResource("AtlasTexture_6wip8")
+flip_h = true
+
+[node name="SCont" type="ScrollContainer" parent="Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="Hbox" type="HBoxContainer" parent="Hbox/SCont"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Add" parent="Hbox/SCont/Hbox" instance=ExtResource("3_6wip8")]
+layout_mode = 2
+
+[node name="TextureButton3" type="TextureButton" parent="Hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_6wip8")
+texture_normal = SubResource("AtlasTexture_6wip8")
+
+[node name="Control3" type="Control" parent="Hbox"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme = ExtResource("2_6wip8")
+
+[node name="Hbox2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hbox2/ScrollContainer"]
+custom_minimum_size = Vector2(4096, 4096)
+layout_mode = 2
+texture = ExtResource("1_2yhh1")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="VSeparator" type="VSeparator" parent="Hbox2"]
+layout_mode = 2
+theme = ExtResource("2_6wip8")
+
+[node name="Hbox" type="HBoxContainer" parent="Hbox2"]
+layout_mode = 2

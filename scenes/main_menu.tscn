@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://7ifckdvsorf3"]
+
+[ext_resource type="Script" uid="uid://w55eukxqtvij" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://btmwiy6gipsji" path="res://assets/fonts/Exo2-Bold.ttf" id="2_ekxnf"]
+[ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://cmkrolah68oud" path="res://assets/icons-default.png" id="4_wu84c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ln24"]
+atlas = ExtResource("4_wu84c")
+region = Rect2(200, 100, 50, 50)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="MCont" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBox" type="VBoxContainer" parent="MCont"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MCont/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 72
+text = "Forces of Box"
+
+[node name="Buttons" type="HBoxContainer" parent="MCont/VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 16
+
+[node name="Play" type="Button" parent="MCont/VBox/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 36
+text = "Play"
+
+[node name="Functions" type="Button" parent="MCont/VBox/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 36
+text = "Functions"
+
+[node name="Control" type="Control" parent="MCont/VBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Setting" type="Button" parent="MCont/VBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 36
+icon = SubResource("AtlasTexture_8ln24")
+
+[node name="Info" type="Button" parent="MCont/VBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 36
+text = "i"
+
+[connection signal="pressed" from="MCont/VBox/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MCont/VBox/Buttons/Functions" to="." method="_on_functions_pressed"]
+[connection signal="pressed" from="MCont/VBox/Buttons/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="MCont/VBox/Buttons/Info" to="." method="_on_info_pressed"]

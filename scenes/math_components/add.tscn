@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckxvog3ity17k"]
+
+[ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="1_5ckr5"]
+[ext_resource type="FontFile" uid="uid://dx42t464uoa8o" path="res://assets/fonts/latinmodern-math.otf" id="2_10pfm"]
+[ext_resource type="Script" uid="uid://bxwl4h44krem0" path="res://scripts/base_mcomponent.gd" id="2_emkyg"]
+[ext_resource type="FontFile" uid="uid://dlvevl5tkh2nx" path="res://assets/fonts/Exo2-Regular.ttf" id="3_emkyg"]
+
+[node name="Add" type="PanelContainer"]
+custom_minimum_size = Vector2(88, 88)
+theme = ExtResource("1_5ckr5")
+script = ExtResource("2_emkyg")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_10pfm")
+theme_override_font_sizes/font_size = 48
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_emkyg")
+theme_override_font_sizes/font_size = 12
+text = "Add"
+horizontal_alignment = 1

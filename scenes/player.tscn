@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm5jqvc4whkv2"]
+
+[ext_resource type="Script" uid="uid://dlcgcnasmo1d0" path="res://scripts/player.gd" id="1_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cyyxh57a4fy1h" path="res://assets/duochrome/box.png" id="2_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://dpjiogfvcw654" path="res://scenes/dpad.tscn" id="3_qhqgy"]
+[ext_resource type="FontFile" uid="uid://bmubmb6qxmmmi" path="res://assets/fonts/Exo2-Medium.ttf" id="4_qlg0r"]
+[ext_resource type="Script" uid="uid://bpda8ypbqjj5x" path="res://scripts/function_applier.gd" id="5_qlg0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(60, 60)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_qhqgy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("2_qlg0r")
+region_rect = Rect2(0, 0, 256, 256)
+
+[node name="Colls" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DPad" parent="CanvasLayer/Control" instance=ExtResource("3_qhqgy")]
+
+[node name="MCont" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Vbox" type="VBoxContainer" parent="CanvasLayer/Control/MCont"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="S1" type="Button" parent="CanvasLayer/Control/MCont/Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_qlg0r")
+theme_override_font_sizes/font_size = 32
+text = "S1"
+
+[node name="FuntionApplier" type="Node2D" parent="."]
+script = ExtResource("5_qlg0r")
+
+[connection signal="pressed" from="CanvasLayer/Control/MCont/Vbox/S1" to="." method="_on_func1_pressed"]

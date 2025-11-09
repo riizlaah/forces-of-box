@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpjiogfvcw654"]
+
+[ext_resource type="Script" uid="uid://db5aevpo714a7" path="res://scripts/dpad.gd" id="1_8nx05"]
+[ext_resource type="Texture2D" uid="uid://bmbv3vwxale0q" path="res://assets/style-g-large.png" id="1_vcomv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nx05"]
+atlas = ExtResource("1_vcomv")
+region = Rect2(1032, 390, 128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ho7a"]
+size = Vector2(110, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35btk"]
+atlas = ExtResource("1_vcomv")
+region = Rect2(1032, 260, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tooam"]
+atlas = ExtResource("1_vcomv")
+region = Rect2(1032, 650, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25go6"]
+atlas = ExtResource("1_vcomv")
+region = Rect2(1032, 520, 128, 128)
+
+[node name="DPad" type="Node2D"]
+script = ExtResource("1_8nx05")
+
+[node name="Up" type="TouchScreenButton" parent="."]
+position = Vector2(140, -268)
+texture_normal = SubResource("AtlasTexture_8nx05")
+shape = SubResource("RectangleShape2D_8ho7a")
+action = "w"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+position = Vector2(278, -128)
+texture_normal = SubResource("AtlasTexture_35btk")
+shape = SubResource("RectangleShape2D_8ho7a")
+action = "d"
+
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2(0, -128)
+texture_normal = SubResource("AtlasTexture_tooam")
+shape = SubResource("RectangleShape2D_8ho7a")
+action = "a"
+
+[node name="Down" type="TouchScreenButton" parent="."]
+position = Vector2(140, -128)
+texture_normal = SubResource("AtlasTexture_25go6")
+shape = SubResource("RectangleShape2D_8ho7a")
+action = "s"
