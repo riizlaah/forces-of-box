@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b63ghwich3wj"]
+[gd_scene load_steps=6 format=3 uid="uid://b63ghwich3wj"]
 
+[ext_resource type="Script" uid="uid://b2b4yxfjrl4po" path="res://scripts/functions_scene.gd" id="1_jr53i"]
 [ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="1_ko02k"]
 [ext_resource type="PackedScene" uid="uid://28t7kcmiqbt4" path="res://scenes/function_editor.tscn" id="2_prlwn"]
 [ext_resource type="Texture2D" uid="uid://cmkrolah68oud" path="res://assets/icons-default.png" id="3_fvv6x"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jr53i")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -42,3 +44,5 @@ grow_horizontal = 0
 texture_normal = SubResource("AtlasTexture_jr53i")
 ignore_texture_size = true
 stretch_mode = 0
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

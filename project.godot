@@ -15,6 +15,10 @@ run/main_scene="uid://7ifckdvsorf3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 
+[autoload]
+
+GameManager="*res://scripts/autoload/game_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280
