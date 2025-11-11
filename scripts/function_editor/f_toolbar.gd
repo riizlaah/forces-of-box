@@ -28,6 +28,12 @@ const BASE_MATH_COMPS := [
 		"type": MathDisplayLabel.Type.OPERATOR
 	},
 	{
+		"display": ".",
+		"interpreted": ".",
+		"desc": "Floating Point",
+		"type": MathDisplayLabel.Type.OTHER
+	},
+	{
 		"display": "0",
 		"interpreted": "0",
 		"desc": "Zero",
@@ -107,7 +113,7 @@ const BASE_MATH_COMPS := [
 @onready var search_input: LineEdit = $Vbox/Hbox/SearchInput
 
 
-var max_operator := 1
+var max_operator := 3
 var curr_operator := 0:
 	set(n):
 		curr_operator = n
@@ -115,6 +121,7 @@ var curr_operator := 0:
 		op_count.text = "OP Count %d / %d" % [curr_operator, max_operator]
 
 func _ready() -> void:
+	curr_operator = 0
 	for item in BASE_MATH_COMPS: create_math_component(item)
 
 func create_math_component(data: Dictionary):
