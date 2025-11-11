@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://crc76siuhl1o3"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://crc76siuhl1o3"]
 
 [ext_resource type="FontFile" uid="uid://bmubmb6qxmmmi" path="res://assets/fonts/Exo2-Medium.ttf" id="1_yjbaf"]
+[ext_resource type="FontFile" uid="uid://dlvevl5tkh2nx" path="res://assets/fonts/Exo2-Regular.ttf" id="2_a58lo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a58lo"]
 content_margin_left = 24.0
@@ -139,6 +140,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_3erqi")
 Button/styles/normal = SubResource("StyleBoxFlat_twlnn")
 Button/styles/pressed = SubResource("StyleBoxFlat_njmdw")
 HSeparator/styles/separator = SubResource("StyleBoxLine_yjbaf")
+Label/fonts/font = ExtResource("2_a58lo")
 LineEdit/font_sizes/font_size = 24
 LineEdit/fonts/font = ExtResource("1_yjbaf")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_gdqj8")

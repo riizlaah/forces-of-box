@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://28t7kcmiqbt4"]
+[gd_scene load_steps=14 format=3 uid="uid://28t7kcmiqbt4"]
 
+[ext_resource type="Script" uid="uid://wx2fs1n46gsx" path="res://scripts/function_editor/f_toolbar.gd" id="1_0spem"]
 [ext_resource type="Texture2D" uid="uid://d00wdfqisfitt" path="res://assets/black-grid.jpg" id="1_2yhh1"]
 [ext_resource type="Texture2D" uid="uid://cmkrolah68oud" path="res://assets/icons-default.png" id="1_hla8g"]
 [ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="2_6wip8"]
-[ext_resource type="PackedScene" uid="uid://ckxvog3ity17k" path="res://scenes/math_components/add.tscn" id="3_6wip8"]
+[ext_resource type="Theme" uid="uid://cdfoekad7tsrx" path="res://assets/godot_res/themes/math_font.tres" id="5_2urck"]
+[ext_resource type="Script" uid="uid://cdaqsy25qlsb5" path="res://scripts/function_editor/bg_blueprint.gd" id="5_3b5a2"]
+[ext_resource type="Script" uid="uid://cw003mn6y2m00" path="res://scripts/function_editor/f_display.gd" id="5_dyi4p"]
+[ext_resource type="Script" uid="uid://chxjgp0br5y8i" path="res://scripts/function_editor/math_lb.gd" id="6_q1hn5"]
+[ext_resource type="Script" uid="uid://cgjkgnislfwr6" path="res://scripts/function_editor/f_builder.gd" id="9_syamy"]
+[ext_resource type="FontFile" uid="uid://dx42t464uoa8o" path="res://assets/fonts/latinmodern-math.otf" id="9_xdvwm"]
+[ext_resource type="Script" uid="uid://dnv62j77w2lcp" path="res://scripts/function_editor/f_builder_spacer.gd" id="11_syamy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hla8g"]
 atlas = ExtResource("1_hla8g")
@@ -25,16 +32,33 @@ metadata/_tab_index = 0
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="Hbox" type="HBoxContainer" parent="."]
+[node name="Toolbar" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 16
+script = ExtResource("1_0spem")
 
-[node name="Control2" type="Control" parent="Hbox"]
+[node name="Control2" type="Control" parent="Toolbar"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="Hbox"]
+[node name="Vbox" type="VBoxContainer" parent="Toolbar"]
+layout_mode = 2
+
+[node name="OpCount" type="Label" parent="Toolbar/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_6wip8")
+theme_override_font_sizes/font_size = 24
+text = "OP Count: 0 / 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hbox" type="HBoxContainer" parent="Toolbar/Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LineEdit" type="LineEdit" parent="Toolbar/Vbox/Hbox"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -42,18 +66,18 @@ size_flags_vertical = 4
 theme = ExtResource("2_6wip8")
 placeholder_text = "Search..."
 
-[node name="TextureButton" type="TextureButton" parent="Hbox"]
+[node name="TextureButton" type="TextureButton" parent="Toolbar/Vbox/Hbox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_6wip8")
 texture_normal = SubResource("AtlasTexture_hla8g")
 
-[node name="VSeparator" type="VSeparator" parent="Hbox"]
+[node name="VSeparator" type="VSeparator" parent="Toolbar"]
 layout_mode = 2
 theme = ExtResource("2_6wip8")
 
-[node name="TextureButton2" type="TextureButton" parent="Hbox"]
+[node name="TextureButton2" type="TextureButton" parent="Toolbar"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -61,29 +85,26 @@ theme = ExtResource("2_6wip8")
 texture_normal = SubResource("AtlasTexture_6wip8")
 flip_h = true
 
-[node name="SCont" type="ScrollContainer" parent="Hbox"]
+[node name="SCont" type="ScrollContainer" parent="Toolbar"]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
-[node name="Hbox" type="HBoxContainer" parent="Hbox/SCont"]
+[node name="MathComps" type="HBoxContainer" parent="Toolbar/SCont"]
 custom_minimum_size = Vector2(5, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Add" parent="Hbox/SCont/Hbox" instance=ExtResource("3_6wip8")]
-layout_mode = 2
-
-[node name="TextureButton3" type="TextureButton" parent="Hbox"]
+[node name="TextureButton3" type="TextureButton" parent="Toolbar"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_6wip8")
 texture_normal = SubResource("AtlasTexture_6wip8")
 
-[node name="Control3" type="Control" parent="Hbox"]
+[node name="Control3" type="Control" parent="Toolbar"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
@@ -107,6 +128,41 @@ layout_mode = 2
 texture = ExtResource("1_2yhh1")
 expand_mode = 1
 stretch_mode = 1
+script = ExtResource("5_3b5a2")
+
+[node name="Function" type="HBoxContainer" parent="Hbox2/ScrollContainer/TextureRect"]
+layout_mode = 1
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 415.0
+offset_bottom = 289.0
+script = ExtResource("5_dyi4p")
+
+[node name="Label" type="Label" parent="Hbox2/ScrollContainer/TextureRect/Function"]
+layout_mode = 2
+theme = ExtResource("5_2urck")
+theme_override_font_sizes/font_size = 48
+text = " f(x)="
+
+[node name="Hbox" type="HBoxContainer" parent="Hbox2/ScrollContainer/TextureRect/Function"]
+layout_mode = 2
+script = ExtResource("9_syamy")
+
+[node name="MathDisplayLabel" type="Label" parent="Hbox2/ScrollContainer/TextureRect/Function/Hbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_xdvwm")
+theme_override_font_sizes/font_size = 48
+text = "x"
+script = ExtResource("6_q1hn5")
+displayed_str = "x"
+interpreted_str = "x"
+type = 1
+metadata/_custom_type_script = "uid://chxjgp0br5y8i"
+
+[node name="Spacer" type="Control" parent="Hbox2/ScrollContainer/TextureRect/Function/Hbox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+script = ExtResource("11_syamy")
 
 [node name="VSeparator" type="VSeparator" parent="Hbox2"]
 layout_mode = 2

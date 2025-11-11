@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cdfoekad7tsrx"]
+
+[ext_resource type="FontFile" uid="uid://dx42t464uoa8o" path="res://assets/fonts/latinmodern-math.otf" id="1_eiwrx"]
+
+[resource]
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_eiwrx")
