@@ -103,6 +103,9 @@ const BASE_MATH_COMPS := [
 
 @onready var math_comps_node: HBoxContainer = $SCont/MathComps
 @onready var op_count: Label = $Vbox/OpCount
+@onready var toggle_search: TextureButton = $Vbox/Hbox/ToggleSearch
+@onready var search_input: LineEdit = $Vbox/Hbox/SearchInput
+
 
 var max_operator := 1
 var curr_operator := 0:
@@ -121,3 +124,17 @@ func create_math_component(data: Dictionary):
 	mec.desc = data.desc
 	mec.type = data.type
 	math_comps_node.add_child(mec)
+
+func _on_toggle_search_pressed() -> void:
+	search_input.visible = !search_input.visible
+	toggle_search.flip_h = search_input.visible
+
+func _on_search_input_text_changed(new_text: String) -> void:
+	if new_text.is_empty():
+		for item in math_comps_node.get_children(): item.show()
+		return
+	for item in math_comps_node.get_children():
+		if !item.desc.containsn(new_text):
+			item.hide()
+			continue
+		item.show()
