@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c833ybfa81h5s"]
 
 [ext_resource type="PackedScene" uid="uid://bm5jqvc4whkv2" path="res://scenes/player.tscn" id="1_paw1w"]
-[ext_resource type="Texture2D" uid="uid://ckuhnef51a3xq" path="res://assets/duochrome/brick.png" id="2_paw1w"]
+[ext_resource type="Texture2D" uid="uid://ce01agul104xg" path="res://assets/duochrome/box2.png" id="2_paw1w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2venv"]
 size = Vector2(2048, 256)
