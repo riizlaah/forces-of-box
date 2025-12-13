@@ -160,9 +160,10 @@ interpreted_str = "x"
 type = 1
 metadata/_custom_type_script = "uid://chxjgp0br5y8i"
 
-[node name="Spacer" type="Control" parent="Hbox2/ScrollContainer/TextureRect/Function/Hbox"]
+[node name="Spacer" type="ColorRect" parent="Hbox2/ScrollContainer/TextureRect/Function/Hbox"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+color = Color(1, 1, 1, 0)
 script = ExtResource("11_syamy")
 
 [node name="VSeparator" type="VSeparator" parent="Hbox2"]
