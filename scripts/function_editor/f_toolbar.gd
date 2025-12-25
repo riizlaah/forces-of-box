@@ -120,6 +120,9 @@ var curr_operator := 0:
 		if !is_instance_valid(op_count): return
 		op_count.text = "OP Count %d / %d" % [curr_operator, max_operator]
 
+func _enter_tree() -> void:
+	GameManager.f_toolbar = self
+
 func _ready() -> void:
 	curr_operator = 0
 	for item in BASE_MATH_COMPS: create_math_component(item)

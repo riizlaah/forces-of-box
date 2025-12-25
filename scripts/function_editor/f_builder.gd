@@ -1,12 +1,13 @@
 class_name FBuilder
 extends HBoxContainer
 
-@onready var toolbar: FunctionToolbar = $"../../../../../Toolbar"
+@export var toolbar: FunctionToolbar
 @onready var spacer: FBUilderSpacer = $Spacer
 
 var curr_formula := ""
 
 func _ready() -> void:
+	toolbar = GameManager.f_toolbar
 	update_formula()
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:

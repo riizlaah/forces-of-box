@@ -1,5 +1,9 @@
 extends Node
 
+var f_toolbar: FunctionToolbar
+
+
+
 func fade(parent: Control, del_node := false, from := Color(0,0,0,0), to := Color.BLACK, duration := 0.25, freeze_duration := 0.25):
 	var cr := ColorRect.new()
 	cr.size = parent.get_viewport_rect().size
