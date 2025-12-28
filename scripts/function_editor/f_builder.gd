@@ -1,14 +1,23 @@
 class_name FBuilder
 extends HBoxContainer
 
-@export var toolbar: FunctionToolbar
+var toolbar: FunctionToolbar
 @onready var spacer: FBUilderSpacer = $Spacer
+var del_btn: Button
 
 var curr_formula := ""
+var idxs := []
+
 
 func _ready() -> void:
 	toolbar = GameManager.f_toolbar
 	update_formula()
+	await get_parent().get_parent().ready
+	del_btn = get_parent().get_parent().del_btn
+	del_btn.hidden.connect(func():
+		idxs = []
+		queue_redraw()
+	)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is not MathDisplayLabel: return false
@@ -78,7 +87,8 @@ func handle_zero(data: MathDisplayLabel):
 		return true
 	return false
 
-func update_formula(): curr_formula = get_formula_as_text()
+func update_formula():
+	curr_formula = get_formula_as_text()
 
 func get_last_comp():
 	var last_idx = curr_formula.get_slice_count("+") - 1
@@ -87,3 +97,55 @@ func get_last_comp():
 		last_idx = comp.get_slice_count(op) - 1
 		comp = comp.get_slice(op, last_idx)
 	return comp
+
+# Delete
+func popup_delete(start: MathDisplayLabel):
+	if get_child_count() == 2: return
+	var start_type := start.type
+	for i in range(start.get_index(), get_child_count()):
+		var child := get_child(i)
+		if child is FBUilderSpacer: break
+		if start_type == MathDisplayLabel.Type.OPERATOR:
+			if child.type == MathDisplayLabel.Type.OPERATOR and i != start.get_index(): break
+			idxs.append(i)
+		else:
+			idxs.append(i)
+			if child.type == MathDisplayLabel.Type.OPERATOR: break
+	var extras := []
+	if start_type != MathDisplayLabel.Type.OPERATOR: for i in range(start.get_index(), 0, -1):
+		if get_child(i).type == MathDisplayLabel.Type.OPERATOR: break
+		extras.push_front(i)
+	idxs = extras + idxs
+	if idxs.size() >= get_child_count() - 1:
+		del_btn.hide()
+		return
+	queue_redraw()
+	del_btn.global_position = start.global_position - Vector2(0, 40)
+	if del_btn.pressed.is_connected(del_idxs): del_btn.pressed.disconnect(del_idxs)
+	del_btn.pressed.connect(del_idxs.bind(idxs), CONNECT_ONE_SHOT)
+	await get_tree().process_frame
+	del_btn.show()
+
+func del_idxs(indexes: Array):
+	for i in idxs:
+		get_child(i).queue_free()
+	idxs = []
+	del_btn.hide()
+	await get_tree().process_frame
+	update_formula()
+
+func _draw() -> void:
+	if idxs.is_empty(): 
+		return
+	var bounds := Rect2()
+	var has_bound := false
+	for i in idxs:
+		var child_rect := Rect2(get_child(i).position, get_child(i).size)
+		child_rect.size.x += 5
+		child_rect.position.x -= 2.5
+		if has_bound:
+			bounds = bounds.merge(child_rect)
+		else:
+			bounds = child_rect
+			has_bound = true
+	draw_rect(bounds, Color.WHITE, false, 1)

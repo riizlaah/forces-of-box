@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://28t7kcmiqbt4"]
+[gd_scene load_steps=17 format=3 uid="uid://28t7kcmiqbt4"]
 
 [ext_resource type="Script" uid="uid://wx2fs1n46gsx" path="res://scripts/function_editor/f_toolbar.gd" id="1_0spem"]
 [ext_resource type="Texture2D" uid="uid://d00wdfqisfitt" path="res://assets/black-grid.jpg" id="1_2yhh1"]
@@ -19,6 +19,39 @@ region = Rect2(100, 300, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wip8"]
 atlas = ExtResource("1_hla8g")
 region = Rect2(100, 300, 48, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syamy"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.76910156, 0, 0.104098074, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2ria"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.9816645, 0.00084007415, 0.14766806, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76v6i"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.8420203, 9.869211e-05, 0.1202429, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="FunctionEditor" type="VBoxContainer"]
 anchors_preset = 15
@@ -130,6 +163,19 @@ texture = ExtResource("1_2yhh1")
 expand_mode = 1
 stretch_mode = 1
 script = ExtResource("5_3b5a2")
+
+[node name="Del" type="Button" parent="Hbox2/ScrollContainer/TextureRect"]
+visible = false
+layout_mode = 0
+offset_right = 61.0
+offset_bottom = 33.0
+pivot_offset = Vector2(30, 32)
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_syamy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f2ria")
+theme_override_styles/hover = SubResource("StyleBoxFlat_76v6i")
+theme_override_styles/focus = SubResource("StyleBoxFlat_syamy")
+text = "Delete"
 
 [node name="Function" type="HBoxContainer" parent="Hbox2/ScrollContainer/TextureRect"]
 layout_mode = 1
