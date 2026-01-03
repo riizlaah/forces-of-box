@@ -2,6 +2,7 @@ class_name FunctionToolbar
 extends HBoxContainer
 
 const MATH_EDITOR_COMP = preload("uid://ckxvog3ity17k")
+const FUNCTION_COMP = preload("uid://c3oki3f3j6610")
 const BASE_MATH_COMPS := [
 	{
 		"display": "+",
@@ -96,18 +97,44 @@ const BASE_MATH_COMPS := [
 	{
 		"display": "x",
 		"interpreted": "x",
-		"desc": "X Variable",
+		"desc": "X Velocity",
 		"type": MathDisplayLabel.Type.VARIABLE
 	},
 	{
 		"display": "y",
 		"interpreted": "y",
-		"desc": "Y Variable",
+		"desc": "Y Velocity",
+		"type": MathDisplayLabel.Type.VARIABLE
+	},
+	{
+		"display": "m",
+		"interpreted": "m",
+		"desc": "Mass",
+		"type": MathDisplayLabel.Type.VARIABLE
+	},
+	{
+		"display": "x1",
+		"interpreted": "x1",
+		"desc": "X Scale",
+		"type": MathDisplayLabel.Type.VARIABLE
+	},
+	{
+		"display": "y1",
+		"interpreted": "y1",
+		"desc": "Y Scale",
 		"type": MathDisplayLabel.Type.VARIABLE
 	},
 ]
+const BASE_FDISPLAY := [
+	{"fname": "V.x,(x)", "desc": "X Velocity"},
+	{"fname": "V.y,(y)", "desc": "Y Velocity"},
+	{"fname": "M(m)", "desc": "Mass"},
+	{"fname": "S.x,(x1)", "desc": "X Scale"},
+	{"fname": "S.y,(y1)", "desc": "Y Scale"},
+]
 
 @onready var math_comps_node: HBoxContainer = $SCont/MathComps
+@onready var f_types: HBoxContainer = $SCont2/FTypes
 @onready var op_count: Label = $Vbox/OpCount
 @onready var toggle_search: TextureButton = $Vbox/Hbox/ToggleSearch
 @onready var search_input: LineEdit = $Vbox/Hbox/SearchInput
@@ -116,7 +143,7 @@ const BASE_MATH_COMPS := [
 var max_operator := 3
 var curr_operator := 0:
 	set(n):
-		curr_operator = n
+		curr_operator = clampi(n, 0, max_operator)
 		if !is_instance_valid(op_count): return
 		op_count.text = "OP Count %d / %d" % [curr_operator, max_operator]
 
@@ -126,6 +153,9 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	curr_operator = 0
 	for item in BASE_MATH_COMPS: create_math_component(item)
+	for item in BASE_FDISPLAY: create_fdisplay_comp(item)
+
+func decrease_op_count(): curr_operator -= 1
 
 func create_math_component(data: Dictionary):
 	var mec: MathEditorComp = MATH_EDITOR_COMP.instantiate()
@@ -134,6 +164,12 @@ func create_math_component(data: Dictionary):
 	mec.desc = data.desc
 	mec.type = data.type
 	math_comps_node.add_child(mec)
+
+func create_fdisplay_comp(data: Dictionary):
+	var fdc: FuncEditorComp = FUNCTION_COMP.instantiate()
+	fdc.fname = data.fname
+	fdc.desc = data.desc
+	f_types.add_child(fdc)
 
 func _on_toggle_search_pressed() -> void:
 	search_input.visible = !search_input.visible

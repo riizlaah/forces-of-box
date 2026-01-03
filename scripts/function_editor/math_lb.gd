@@ -8,11 +8,14 @@ extends Label
 @export var interpreted_str := "+"
 enum Type {CONSTANT, VARIABLE, OPERATOR, OTHER}
 @export var type: Type = Type.CONSTANT
+var drag_preview := true
 
 func _ready() -> void:
 	text = displayed_str
 	theme = preload("uid://cdfoekad7tsrx")
 	add_theme_font_size_override("font_size", 48)
+	if drag_preview: return
+	if type == Type.OPERATOR: tree_exited.connect(get_parent().toolbar.decrease_op_count)
 
 var last_call := 0
 func _input(event: InputEvent) -> void:
@@ -25,6 +28,3 @@ func _input(event: InputEvent) -> void:
 	last_call = curr_ms
 	get_parent().popup_delete(self) # parent = FBuilder
 	get_viewport().set_input_as_handled()
-
-func _draw() -> void:
-	pass#draw_rect()

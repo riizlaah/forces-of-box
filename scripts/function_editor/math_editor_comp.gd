@@ -20,4 +20,5 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 	mlb.interpreted_str = interpreted_str
 	mlb.type = type
 	set_drag_preview(mlb.duplicate())
+	mlb.drag_preview = false
 	return mlb

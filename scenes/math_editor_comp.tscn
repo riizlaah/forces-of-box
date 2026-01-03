@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckxvog3ity17k"]
+[gd_scene load_steps=6 format=3 uid="uid://ckxvog3ity17k"]
 
 [ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="1_5ckr5"]
 [ext_resource type="FontFile" uid="uid://dx42t464uoa8o" path="res://assets/fonts/latinmodern-math.otf" id="2_10pfm"]
 [ext_resource type="Script" uid="uid://bxwl4h44krem0" path="res://scripts/function_editor/math_editor_comp.gd" id="2_emkyg"]
 [ext_resource type="FontFile" uid="uid://dlvevl5tkh2nx" path="res://assets/fonts/Exo2-Regular.ttf" id="3_emkyg"]
+[ext_resource type="Script" uid="uid://4nml6g2x448p" path="res://scripts/misc/drag_data_caller.gd" id="4_5n0kp"]
 
 [node name="MathEditorComponent" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 88)
@@ -21,6 +22,7 @@ theme_override_font_sizes/font_size = 52
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_5n0kp")
 
 [node name="Desc" type="Label" parent="Vbox"]
 layout_mode = 2
@@ -28,3 +30,4 @@ theme_override_fonts/font = ExtResource("3_emkyg")
 theme_override_font_sizes/font_size = 16
 text = "X Variable"
 horizontal_alignment = 1
+script = ExtResource("4_5n0kp")

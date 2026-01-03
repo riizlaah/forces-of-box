@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3oki3f3j6610"]
+
+[ext_resource type="Theme" uid="uid://crc76siuhl1o3" path="res://assets/godot_res/themes/main.tres" id="1_1eahb"]
+[ext_resource type="Script" uid="uid://nf4v67tvhrne" path="res://scripts/function_editor/func_type_comp.gd" id="2_1eahb"]
+[ext_resource type="FontFile" uid="uid://dx42t464uoa8o" path="res://assets/fonts/latinmodern-math.otf" id="3_6ldt1"]
+[ext_resource type="Script" uid="uid://calfouknsac7q" path="res://scripts/misc/drag_data_caller2.gd" id="4_6ldt1"]
+[ext_resource type="FontFile" uid="uid://dlvevl5tkh2nx" path="res://assets/fonts/Exo2-Regular.ttf" id="4_ahpxt"]
+[ext_resource type="Script" uid="uid://4nml6g2x448p" path="res://scripts/misc/drag_data_caller.gd" id="5_1uke7"]
+
+[node name="FuncTypeComponent" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 88)
+theme = ExtResource("1_1eahb")
+script = ExtResource("2_1eahb")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="RichTextLabel" parent="Vbox"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_6ldt1")
+bbcode_enabled = true
+text = "[font_size=30]V[font_size=20]x[/font_size](x)[/font_size]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_6ldt1")
+
+[node name="Desc" type="Label" parent="Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ahpxt")
+theme_override_font_sizes/font_size = 16
+text = "X Velocity"
+horizontal_alignment = 1
+script = ExtResource("5_1uke7")

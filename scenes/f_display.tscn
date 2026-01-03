@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw127lhv5d1f4"]
+
+[ext_resource type="Script" uid="uid://cw003mn6y2m00" path="res://scripts/function_editor/f_display.gd" id="1_h8cdt"]
+[ext_resource type="Theme" uid="uid://cdfoekad7tsrx" path="res://assets/godot_res/themes/math_font.tres" id="2_m1d7t"]
+[ext_resource type="Script" uid="uid://cgjkgnislfwr6" path="res://scripts/function_editor/f_builder.gd" id="3_lvap3"]
+[ext_resource type="FontFile" uid="uid://dx42t464uoa8o" path="res://assets/fonts/latinmodern-math.otf" id="4_lbwta"]
+[ext_resource type="Script" uid="uid://bmj5fph1k1wgi" path="res://scripts/misc/drag_data_caller3.gd" id="4_w7ijg"]
+[ext_resource type="Script" uid="uid://chxjgp0br5y8i" path="res://scripts/function_editor/math_lb.gd" id="5_0jv0p"]
+[ext_resource type="Script" uid="uid://dnv62j77w2lcp" path="res://scripts/function_editor/f_builder_spacer.gd" id="6_k4rgi"]
+
+[node name="FDisplay" type="HBoxContainer"]
+offset_right = 212.0
+offset_bottom = 49.0
+script = ExtResource("1_h8cdt")
+
+[node name="Label" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme = ExtResource("2_m1d7t")
+theme_override_fonts/normal_font = ExtResource("4_lbwta")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Vx(x)="
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_w7ijg")
+
+[node name="Builder" type="HBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("3_lvap3")
+
+[node name="MathDisplayLabel" type="Label" parent="Builder"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lbwta")
+theme_override_font_sizes/font_size = 48
+text = "1"
+script = ExtResource("5_0jv0p")
+displayed_str = "1"
+interpreted_str = "1"
+metadata/_custom_type_script = "uid://chxjgp0br5y8i"
+
+[node name="Spacer" type="ColorRect" parent="Builder"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("6_k4rgi")

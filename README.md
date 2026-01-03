@@ -4,6 +4,7 @@ Sebuah game tentang tabrakan objek, berfokus pada mencari fungsi matematika untu
 
 ## Todo
 - Membuat popup delete (formula dan component-nya)
+- Save the formula
 - Membuat minimal 16 level
 - Membuat AI
 - Testing

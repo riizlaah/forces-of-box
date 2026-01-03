@@ -12,8 +12,8 @@ var idxs := []
 func _ready() -> void:
 	toolbar = GameManager.f_toolbar
 	update_formula()
-	await get_parent().get_parent().ready
-	del_btn = get_parent().get_parent().del_btn
+	await get_parent().ready
+	if get_parent().drag_preview: return
 	del_btn.hidden.connect(func():
 		idxs = []
 		queue_redraw()
@@ -78,7 +78,6 @@ func handle_plus_minus(mdl: MathDisplayLabel):
 
 func handle_zero(data: MathDisplayLabel):
 	var comp = get_last_comp()
-	print(comp)
 	if comp == "0" and data.type == MathDisplayLabel.Type.CONSTANT:
 		get_child(-2).interpreted_str = data.interpreted_str
 		get_child(-2).displayed_str = data.displayed_str
